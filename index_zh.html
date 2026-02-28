@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>辛飞阳 | 个人主页</title>
+    <meta name="description" content="辛飞阳（Feiyang Xin）— 上海科技大学本科生。研究方向：GPU 加速、几何估计、神经渲染、可信 AI。">
+    <link rel="stylesheet" href="assets/style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container inner">
+        <a class="brand" href="#top">辛飞阳</a>
+        <nav class="nav" aria-label="主导航">
+          <a href="#publications">论文</a>
+          <a href="#research">科研</a>
+          <a href="#competitions">竞赛</a>
+          <a href="#projects">项目</a>
+          <a href="#cv">简历</a>
+          <a href="#contact">联系</a>
+          <a class="lang" href="index.html" title="English">EN</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="container">
+      <div class="hero">
+        <img class="avatar" src="1.jpg" alt="照片">
+        <div>
+          <h1>辛飞阳 <span class="meta">(Feiyang Xin)</span></h1>
+          <p class="subtitle">
+            上海科技大学计算机科学与技术本科生（2023 - 至今）。关注 GPU 加速、鲁棒几何估计、神经渲染与可信 AI。
+          </p>
+          <p class="quicklinks">
+            <a href="mailto:xinfy2023@shanghaitech.edu.cn">邮箱</a> ·
+            <a href="https://github.com/xinfy2023" rel="me">GitHub</a>
+          </p>
+          <div class="tags" aria-label="标签">
+            <span class="tag">CUDA</span>
+            <span class="tag">C/C++</span>
+            <span class="tag">Python</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Computer Vision</span>
+          </div>
+        </div>
+      </div>
+
+      <section id="publications" class="band q4">
+        <h2>论文（最相关）</h2>
+        <div class="grid">
+          <div class="card">
+            <ul>
+              <li>
+                <strong>TurboRANSAC: A Fully GPU-Accelerated RANSAC Framework for Robust Estimation</strong><br>
+                IEEE ISCAS 2026（共同一作，已接收） ·
+                <span class="meta">[<a href="files/TurboRANSAC_ISCAS2026.pdf">PDF</a>]</span>
+              </li>
+              <li>
+                <strong>E-NGBOOST: Evidential Natural Gradient Boosting for Tabular Uncertainty Quantification</strong><br>
+                ICLR 2026 Trustworthy AI Workshop（Under review） ·
+                <span class="meta">[<a href="files/E-NGBOOST_ICLR2026_TAI_Workshop.pdf">PDF</a>]</span>
+              </li>
+            </ul>
+            <p class="meta">注：under review / in preparation 不代表最终录用结果；若处于 double-blind 阶段，公开匿名稿可能不符合投稿政策。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="research" class="band q3">
+        <h2>科研经历（进行中）</h2>
+        <div class="grid">
+          <div class="card">
+            <p>
+              <strong>主动视角采集 + 3D Gaussian Splatting 的语义目标重建（Habitat/Replica）</strong>
+              <span class="meta">· Manuscript in preparation（计划投稿 IEEE RA-L）</span>
+            </p>
+            <ul>
+              <li>构建“主动导航采集 + 3DGS 重建”的端到端系统，面向语义目标（如 chair/bed/toilet）提升目标区域重建质量。</li>
+              <li>提出导航-重建解耦的 Two-Pass 流程：策略在原生观测下生成轨迹；随后在真鱼眼相机与 BVH/Warp Ray-Tracing 深度监督下重放导出 RGB/Depth/Pose/Hit-mask，保证像素级对齐与几何一致性。</li>
+              <li>建立覆盖率感知评估协议（Coverage@1m、PSNR_all/PSNR_covered、Target coverage 等），降低评测偏置与不可复现风险。</li>
+              <li>内部实验（固定 seeds、全量 test/target views）显示在目标覆盖率接近 baseline 的情况下，目标区域重建质量显著提升（Target PSNR_covered@1m 约 +9 dB）。</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <p>
+              <strong>可微 one-pass 混合渲染：3DGS + 纹理 Mesh 统一框架（CUDA）</strong>
+              <span class="meta">· Manuscript in preparation（计划投稿 ACM TOG）</span>
+            </p>
+            <ul>
+              <li>研发 3D Gaussian Splatting 与纹理 Mesh 的统一 one-pass 可微混合渲染框架（CUDA）。</li>
+              <li>将三角形作为原生 primitive，与高斯在同一 tile 队列中进行 key 排序与融合渲染，支持端到端反向传播（含纹理参数梯度）。</li>
+              <li>围绕画质（PSNR）与性能（FPS）进行系统性评测与优化。</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <p>
+              <strong>自动驾驶多模态可复现训练 / 评测框架（以 Bilateral Driving 为唯一主干）</strong>
+              <span class="meta">· Ongoing</span>
+            </p>
+            <ul>
+              <li>目标：将 Camera / LiDAR / Radar 与畸变相机渲染等能力统一到“一键训练 + 一键评测”的可复现工程框架中，并输出可用于仿真的多模态渲染结果。</li>
+              <li>审稿关键矛盾：外观分支不污染物理模态；渲染层面使用统一数学法则 + 模态定制高效实现，避免“缝合怪”。</li>
+              <li>效率主线：借鉴 PackNet 思想做恒定容量的多模态融合（共享表示池上学习 gating/mask），并探索 Sobolev/Laplacian 等预条件以加速、稳定优化收敛。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="competitions" class="band q2">
+        <h2>竞赛与奖项</h2>
+        <div class="grid">
+          <div class="card">
+            <ul>
+              <li>
+                <strong>大辛庄陶片拼合 AI 挑战赛（Kaggle）</strong>（2025 - 至今）— 队长：面向真实出土陶片数据的断茬匹配拼合与器形复原算法（参赛项目）。
+                <details>
+                  <summary class="meta">竞赛简介与评价指标（展开）</summary>
+                  <p class="meta">
+                    人工智能如何揭开失落文明的秘密？本挑战赛融合商代考古与机器学习，目标是将成千上万片陶器碎片自动拼合，并尽可能复原原始器物形态。
+                  </p>
+                  <p class="meta">
+                    数据来源：济南大辛庄遗址（商朝东方重要聚落）H690 堆积，出土近 20,000 片陶器碎片等遗存。
+                  </p>
+                  <p class="meta">
+                    核心任务：断茬匹配拼合（预测陶片连接关系）与器形三维重建（复原器物形状）。
+                  </p>
+                  <p class="meta">
+                    评测指标：拼接准确度（70%）、器形完整度（15%）、解决方案报告质量与创新性（15%）。
+                  </p>
+                  <p class="meta">
+                    主办：北师香港浸会大学高等研究院、山东大学考古学院（文化遗产研究院）。更多细节可参考竞赛官方 Description 文档。
+                  </p>
+                </details>
+              </li>
+              <li>
+                <strong>全国大学生数学建模竞赛</strong>（2025）— 上海赛区省三等奖（队长）。
+              </li>
+              <li>
+                <strong>美国大学生数学建模竞赛（MCM/ICM）</strong>（2026）— 预计至少 M 奖（结果待公布）。
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="band q1">
+        <h2>个人项目</h2>
+        <div class="grid">
+          <div class="card">
+            <ul>
+              <li><strong>RISC-V 汇编器</strong> — 使用 C 语言独立实现。</li>
+              <li><strong>ChaCha20 高性能优化</strong> — 使用 CUDA 与底层优化提升性能。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="cv" class="band inputs">
+        <h2>简历</h2>
+        <div class="grid">
+          <div class="card">
+            <p><a href="files/resume.pdf">简历（PDF）</a></p>
+            <p class="meta">发布到线上时，记得用最新的 PDF 覆盖 <code>files/resume.pdf</code>。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="band inputs">
+        <h2>联系</h2>
+        <div class="grid">
+          <div class="card">
+            <p>邮箱：<a href="mailto:xinfy2023@shanghaitech.edu.cn">xinfy2023@shanghaitech.edu.cn</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container">
+      <p>
+        最近更新：<time datetime="2026-02-28">2026-02-28</time>。
+        纯 HTML/CSS，方便直接部署到 GitHub Pages。
+      </p>
+    </footer>
+  </body>
+</html>

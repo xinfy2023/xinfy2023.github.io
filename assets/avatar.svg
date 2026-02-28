@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Avatar Placeholder</title>
+  <desc id="desc">A square placeholder avatar with initials.</desc>
+  <rect width="256" height="256" rx="40" fill="#0b5fff"/>
+  <text x="50%" y="55%" text-anchor="middle"
+        font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+        font-size="92" font-weight="700" fill="#ffffff">FX</text>
+</svg>
+

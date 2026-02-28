@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Feiyang Xin | Homepage</title>
+    <meta name="description" content="Feiyang Xin (辛飞阳) — Undergraduate student at ShanghaiTech University. GPU acceleration, geometric estimation, neural rendering, and trustworthy AI.">
+    <link rel="stylesheet" href="assets/style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container inner">
+        <a class="brand" href="#top">Feiyang Xin</a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#publications">Publications</a>
+          <a href="#research">Research</a>
+          <a href="#competitions">Competitions</a>
+          <a href="#projects">Projects</a>
+          <a href="#cv">CV</a>
+          <a href="#contact">Contact</a>
+          <a class="lang" href="index_zh.html" title="中文">中文</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="container">
+      <div class="hero">
+        <img class="avatar" src="1.jpg" alt="Photo">
+        <div>
+          <h1>Feiyang Xin <span class="meta">(辛飞阳)</span></h1>
+          <p class="subtitle">
+            Undergraduate student at ShanghaiTech University (2023 - present). Interested in GPU acceleration, robust geometric estimation, neural rendering, and trustworthy AI.
+          </p>
+          <p class="quicklinks">
+            <a href="mailto:xinfy2023@shanghaitech.edu.cn">Email</a> ·
+            <a href="https://github.com/xinfy2023" rel="me">GitHub</a>
+          </p>
+          <div class="tags" aria-label="Tags">
+            <span class="tag">CUDA</span>
+            <span class="tag">C/C++</span>
+            <span class="tag">Python</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Computer Vision</span>
+          </div>
+        </div>
+      </div>
+
+      <section id="publications" class="band q4">
+        <h2>Publications (Most Relevant)</h2>
+        <div class="grid">
+          <div class="card">
+            <ul>
+              <li>
+                <strong>TurboRANSAC: A Fully GPU-Accelerated RANSAC Framework for Robust Estimation</strong><br>
+                Accepted to IEEE ISCAS 2026. (Co-first author)
+                <span class="meta">[<a href="files/TurboRANSAC_ISCAS2026.pdf">PDF</a>]</span>
+              </li>
+              <li>
+                <strong>E-NGBOOST: Evidential Natural Gradient Boosting for Tabular Uncertainty Quantification</strong><br>
+                ICLR 2026 Trustworthy AI Workshop. (Under review)
+                <span class="meta">[<a href="files/E-NGBOOST_ICLR2026_TAI_Workshop.pdf">PDF</a>]</span>
+              </li>
+            </ul>
+            <p class="meta">
+              Note: “under review” / “in preparation” does not imply acceptance. If a submission is in a strict double-blind phase, publicly posting an anonymous draft may violate the policy.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="research" class="band q3">
+        <h2>Research (Ongoing)</h2>
+        <div class="grid">
+          <div class="card">
+            <p>
+              <strong>Active view collection + 3D Gaussian Splatting for semantic target reconstruction (Habitat/Replica)</strong>
+              <span class="meta">· Manuscript in preparation (planned submission to IEEE RA-L)</span>
+            </p>
+            <ul>
+              <li>Built an end-to-end system that combines active navigation and 3DGS reconstruction for semantic targets (e.g., chair/bed/toilet).</li>
+              <li>Proposed a navigation-reconstruction decoupled Two-Pass pipeline: a policy generates trajectories under its native observations; then trajectories are replayed with a true fisheye camera model and BVH/Warp ray-tracing depth supervision to export aligned RGB/Depth/Pose/Hit-mask.</li>
+              <li>Designed a coverage-aware evaluation protocol (Coverage@1m, PSNR_all/PSNR_covered, target coverage) to reduce bias and improve reproducibility.</li>
+              <li>Internal experiments (fixed seeds, full test/target views) show a significant improvement in target-region quality under similar target coverage (Target PSNR_covered@1m: ~+9 dB).</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <p>
+              <strong>Differentiable one-pass hybrid renderer: unified 3DGS + textured mesh framework (CUDA)</strong>
+              <span class="meta">· Manuscript in preparation (planned submission to ACM TOG)</span>
+            </p>
+            <ul>
+              <li>Developing a CUDA-based one-pass differentiable hybrid rendering framework that unifies 3D Gaussian Splatting and textured meshes.</li>
+              <li>Treats triangles as native primitives and fuses them with Gaussians in the same tile queue via key sorting, enabling end-to-end backpropagation (including texture gradients).</li>
+              <li>Systematically evaluates and optimizes both quality (PSNR) and performance (FPS).</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <p>
+              <strong>Reproducible multi-modal training/evaluation framework for autonomous driving (Bilateral Driving backbone)</strong>
+              <span class="meta">· Ongoing</span>
+            </p>
+            <ul>
+              <li>Goal: unify Camera/LiDAR/Radar and distorted-camera rendering into a single reproducible “one-click train + one-click eval” framework, and produce simulatable multi-modal rendering outputs.</li>
+              <li>Reviewer-facing design: avoid a “stitched system” by keeping appearance correction separated from physical modalities while using a unified math rule with modality-specific efficient implementations.</li>
+              <li>Efficiency line: constant-capacity multi-modal fusion via shared representation pools with learned gating/masks (inspired by PackNet), plus exploring Sobolev/Laplacian-style preconditioning for faster and more stable optimization.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="competitions" class="band q2">
+        <h2>Competitions &amp; Awards</h2>
+        <div class="grid">
+          <div class="card">
+            <ul>
+              <li>
+                <strong>The Great Daxinzhuang Pottery Puzzle Challenge (Kaggle)</strong> (2025 - present) — team lead: sherd-edge matching/assembly and vessel-shape reconstruction methods.
+                <details>
+                  <summary class="meta">Challenge overview &amp; evaluation (expand)</summary>
+                  <p class="meta">
+                    How can AI help uncover the secrets of lost civilizations? This challenge combines archaeology and modern ML to automatically assemble pottery sherds and reconstruct original vessel shapes.
+                  </p>
+                  <p class="meta">
+                    Data: ~20,000 pottery sherds excavated from the H690 deposit at the Daxinzhuang site (Jinan, China), an important settlement in the Shang dynasty.
+                  </p>
+                  <p class="meta">
+                    Tasks: (1) sherd connection prediction (edge matching &amp; assembly), (2) 3D vessel-shape reconstruction.
+                  </p>
+                  <p class="meta">
+                    Metrics: Matching Accuracy (70%), Object Completeness (15%), Solution Report Quality &amp; Innovation (15%).
+                  </p>
+                </details>
+              </li>
+              <li>
+                <strong>National Undergraduate Mathematical Contest in Modeling (China)</strong> (2025) — Shanghai Division Third Prize.
+              </li>
+              <li>
+                <strong>Mathematical Contest in Modeling / Interdisciplinary Contest in Modeling (MCM/ICM)</strong> (2026) — result pending; expected at least Meritorious (M).
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="band q1">
+        <h2>Projects</h2>
+        <div class="grid">
+          <div class="card">
+            <ul>
+              <li><strong>RISC-V Assembler</strong> — implemented in C.</li>
+              <li><strong>ChaCha20 Optimization</strong> — CUDA + low-level optimization for higher throughput.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="cv" class="band inputs">
+        <h2>CV</h2>
+        <div class="grid">
+          <div class="card">
+            <p><a href="files/resume.pdf">Resume (PDF)</a></p>
+            <p class="meta">Replace <code>files/resume.pdf</code> with your latest version when publishing.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="band inputs">
+        <h2>Contact</h2>
+        <div class="grid">
+          <div class="card">
+            <p>Email: <a href="mailto:xinfy2023@shanghaitech.edu.cn">xinfy2023@shanghaitech.edu.cn</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container">
+      <p>
+        Last updated: <time datetime="2026-02-28">2026-02-28</time>.
+        Built with plain HTML/CSS for easy GitHub Pages deployment.
+      </p>
+    </footer>
+  </body>
+</html>
