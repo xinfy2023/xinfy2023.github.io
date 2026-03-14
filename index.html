@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Feiyang Xin | Homepage</title>
-    <meta name="description" content="Feiyang Xin (辛飞阳) — Undergraduate student at ShanghaiTech University. GPU acceleration, geometric estimation, neural rendering, and trustworthy AI.">
+    <meta name="description" content="Feiyang Xin (辛飞阳) — Undergraduate student at ShanghaiTech University. Research focus: neural rendering and 3D Gaussian Splatting (3DGS), with additional work on probabilistic machine learning via evidential learning and density calibration.">
     <link rel="stylesheet" href="assets/style.css">
   </head>
   <body>
@@ -14,6 +14,8 @@
         <nav class="nav" aria-label="Primary">
           <a href="#publications">Publications</a>
           <a href="#research">Research</a>
+          <a href="#offcampus">Off-campus Research</a>
+          <a href="#service">Academic Service</a>
           <a href="#competitions">Competitions</a>
           <a href="#projects">Projects</a>
           <a href="#cv">CV</a>
@@ -29,7 +31,7 @@
         <div>
           <h1>Feiyang Xin <span class="meta">(辛飞阳)</span></h1>
           <p class="subtitle">
-            Undergraduate student at ShanghaiTech University (2023 - present). Interested in GPU acceleration, robust geometric estimation, neural rendering, and trustworthy AI.
+            Undergraduate student at ShanghaiTech University (2023 - present). Primarily focused on neural rendering and 3D Gaussian Splatting (3DGS), with emphasis on distortion-robust reconstruction and reproducible experiments; additionally exploring probabilistic machine learning via evidential learning and density calibration.
           </p>
           <p class="quicklinks">
             <a href="mailto:xinfy2023@shanghaitech.edu.cn">Email</a> ·
@@ -41,6 +43,8 @@
             <span class="tag">Python</span>
             <span class="tag">Linux</span>
             <span class="tag">Computer Vision</span>
+            <span class="tag">3DGS</span>
+            <span class="tag">Embodied AI</span>
           </div>
         </div>
       </div>
@@ -49,21 +53,42 @@
         <h2>Publications (Most Relevant)</h2>
         <div class="grid">
           <div class="card">
-            <ul>
-              <li>
-                <strong>TurboRANSAC: A Fully GPU-Accelerated RANSAC Framework for Robust Estimation</strong><br>
-                Accepted to IEEE ISCAS 2026. (Co-first author)
-                <span class="meta">[<a href="files/TurboRANSAC_ISCAS2026.pdf">PDF</a>]</span>
-              </li>
-              <li>
-                <strong>E-NGBOOST: Evidential Natural Gradient Boosting for Tabular Uncertainty Quantification</strong><br>
-                ICLR 2026 Trustworthy AI Workshop. (Under review)
-                <span class="meta">[<a href="files/E-NGBOOST_ICLR2026_TAI_Workshop.pdf">PDF</a>]</span>
-              </li>
-            </ul>
-            <p class="meta">
-              Note: “under review” / “in preparation” does not imply acceptance. If a submission is in a strict double-blind phase, publicly posting an anonymous draft may violate the policy.
-            </p>
+            <details class="fold">
+              <summary>
+                <p class="fold-title">TurboRANSAC: A Fully GPU-Accelerated RANSAC Framework for Robust Estimation</p>
+                <p class="fold-meta">
+                  Accepted to IEEE ISCAS 2026 (Co-first author)
+                  [<a href="files/TurboRANSAC_ISCAS2026.pdf">PDF</a>]
+                </p>
+              </summary>
+              <div class="fold-body">
+                <p class="meta">
+                  Robust model estimation plays a central role in geometric computer vision, enabling applications such as camera localization, motion estimation, and 3D reconstruction. Among many techniques, Random Sample Consensus (RANSAC) is widely adopted for its robustness to outliers. However, existing RANSAC variants commonly rely on CPU-based sequential processing, leading to computational inefficiency that limits their suitability for real-time and large-scale scenarios. This challenge is heightened by the rise of learning-based pipelines optimized for GPU acceleration, where CPU-bound RANSAC becomes a bottleneck within predominantly GPU-centric workflows.
+                </p>
+                <p class="meta">
+                  TurboRANSAC is a fully GPU-accelerated framework that parallelizes all key stages, including sampling, hypothesis generation, scoring, and refinement, directly on GPU. Unlike methods that optimize isolated components, TurboRANSAC provides a unified and scalable solution applicable to a broad spectrum of geometric estimation problems.
+                </p>
+              </div>
+            </details>
+          </div>
+
+          <div class="card">
+            <details class="fold">
+              <summary>
+                <p class="fold-title">ProbML 2026 Workshop Track (Seoul, South Korea, Jul 05, 2026)</p>
+                <p class="fold-meta">Status: under review</p>
+              </summary>
+              <div class="fold-body">
+                <ul>
+                  <li>Project: Locked Evidence for Shift-Risk Gains on NOAA Climate Regression.</li>
+                  <li>Builds a real spatiotemporal-shift benchmark for NOAA climate regression and validates stable OOD risk-ranking gains from E-NGBoost with density-calibrated uncertainty (E+IF).</li>
+                  <li>Dataset and tasks: 8 US stations, daily data from 2010 to 2024, and 3 next-day tasks (temperature, wind speed, precipitation), each with over 25k samples.</li>
+                  <li>Method: inference-side calibration of evidential epistemic scores using train-only density, without changing the training objective.</li>
+                  <li>Evaluation protocol: 6 pre-locked primary hypotheses, one-sided paired Wilcoxon, bootstrap CIs, and Holm correction to avoid post-hoc bias.</li>
+                  <li>Results: 6/6 primary hypotheses remain significant after Holm (max adjusted p=0.006836), with gains over strong baselines on temporal/geographic AUROC and extreme-event AURC, Risk@80, and FPR@95.</li>
+                </ul>
+              </div>
+            </details>
           </div>
         </div>
       </section>
@@ -72,39 +97,95 @@
         <h2>Research (Ongoing)</h2>
         <div class="grid">
           <div class="card">
-            <p>
-              <strong>Active view collection + 3D Gaussian Splatting for semantic target reconstruction (Habitat/Replica)</strong>
-              <span class="meta">· Manuscript in preparation (planned submission to IEEE RA-L)</span>
-            </p>
-            <ul>
-              <li>Built an end-to-end system that combines active navigation and 3DGS reconstruction for semantic targets (e.g., chair/bed/toilet).</li>
-              <li>Proposed a navigation-reconstruction decoupled Two-Pass pipeline: a policy generates trajectories under its native observations; then trajectories are replayed with a true fisheye camera model and BVH/Warp ray-tracing depth supervision to export aligned RGB/Depth/Pose/Hit-mask.</li>
-              <li>Designed a coverage-aware evaluation protocol (Coverage@1m, PSNR_all/PSNR_covered, target coverage) to reduce bias and improve reproducibility.</li>
-              <li>Internal experiments (fixed seeds, full test/target views) show a significant improvement in target-region quality under similar target coverage (Target PSNR_covered@1m: ~+9 dB).</li>
-            </ul>
+            <details class="fold">
+              <summary>
+                <p class="fold-title">2DGUT: Distortion-Robust Surface World Representation (3DGUT project)</p>
+                <p class="fold-meta">Ongoing</p>
+              </summary>
+              <div class="fold-body">
+                <ul>
+                  <li>For fisheye and strongly distorted cameras, integrates Unscented Transform (UT) projection and ray-plane surfel primitives into a Gaussian Splatting reconstruction pipeline for better geometric and optimization stability under nonlinear projection.</li>
+                  <li>Implements a staged training pipeline (transfer → surface refine → metric recover) and evaluation protocol (PSNR/SSIM/LPIPS plus geometric metrics).</li>
+                  <li>On Lego fisheye (180°), improves PSNR from 22.48 to 31.65; under matched evaluator, achieves 31.83 vs 28.14 (+3.69 dB) against canonical 2DGS (no-UT).</li>
+                  <li>Shows stable gains on multiple ScanNet++ DSLR scenes (up to +1.36 dB on the main scene; all 3 added scenes are positive), with reproducible logs and visualization/ablation analyses completed.</li>
+                </ul>
+              </div>
+            </details>
           </div>
 
           <div class="card">
-            <p>
-              <strong>Differentiable one-pass hybrid renderer: unified 3DGS + textured mesh framework (CUDA)</strong>
-              <span class="meta">· Manuscript in preparation (planned submission to ACM TOG)</span>
-            </p>
-            <ul>
-              <li>Developing a CUDA-based one-pass differentiable hybrid rendering framework that unifies 3D Gaussian Splatting and textured meshes.</li>
-              <li>Treats triangles as native primitives and fuses them with Gaussians in the same tile queue via key sorting, enabling end-to-end backpropagation (including texture gradients).</li>
-              <li>Systematically evaluates and optimizes both quality (PSNR) and performance (FPS).</li>
-            </ul>
+            <details class="fold">
+              <summary>
+                <p class="fold-title">Differentiable one-pass hybrid renderer: unified 3DGS + textured mesh framework (CUDA)</p>
+                <p class="fold-meta">Manuscript in preparation (planned submission to ACM TOG)</p>
+              </summary>
+              <div class="fold-body">
+                <ul>
+                  <li>Developing a CUDA-based one-pass differentiable hybrid rendering framework that unifies 3D Gaussian Splatting and textured meshes.</li>
+                  <li>Treats triangles as native primitives and fuses them with Gaussians in the same tile queue via key sorting, enabling end-to-end backpropagation (including texture gradients).</li>
+                  <li>Systematically evaluates and optimizes both quality (PSNR) and performance (FPS).</li>
+                </ul>
+              </div>
+            </details>
           </div>
 
           <div class="card">
-            <p>
-              <strong>Reproducible multi-modal training/evaluation framework for autonomous driving (Bilateral Driving backbone)</strong>
-              <span class="meta">· Ongoing</span>
-            </p>
+            <details class="fold">
+              <summary>
+                <p class="fold-title">Active view collection + 3D Gaussian Splatting for semantic target reconstruction (Habitat/Replica)</p>
+                <p class="fold-meta">Manuscript in preparation (planned submission to IEEE RA-L)</p>
+              </summary>
+              <div class="fold-body">
+                <ul>
+                  <li>Built an end-to-end system that combines active navigation and 3DGS reconstruction for semantic targets (e.g., chair/bed/toilet).</li>
+                  <li>Proposed a navigation-reconstruction decoupled Two-Pass pipeline: a policy generates trajectories under its native observations; then trajectories are replayed with a true fisheye camera model and BVH/Warp ray-tracing depth supervision to export aligned RGB/Depth/Pose/Hit-mask.</li>
+                  <li>Designed a coverage-aware evaluation protocol (Coverage@1m, PSNR_all/PSNR_covered, target coverage) to reduce bias and improve reproducibility.</li>
+                  <li>Internal experiments (fixed seeds, full test/target views) show a significant improvement in target-region quality under similar target coverage (Target PSNR_covered@1m: ~+9 dB).</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+
+          <div class="card">
+            <details class="fold">
+              <summary>
+                <p class="fold-title">Reproducible multi-modal training/evaluation framework for autonomous driving (Bilateral Driving backbone)</p>
+                <p class="fold-meta">Ongoing (planned submission to NeurIPS 2026)</p>
+              </summary>
+              <div class="fold-body">
+                <ul>
+                  <li>Project site: Institute for AI Industry Research, Tsinghua University (AIR).</li>
+                  <li>Goal: unify Camera/LiDAR/Radar and distorted-camera rendering into a single reproducible “one-click train + one-click eval” framework, and produce simulatable multi-modal rendering outputs.</li>
+                  <li>Reviewer-facing design: avoid a “stitched system” by keeping appearance correction separated from physical modalities while using a unified math rule with modality-specific efficient implementations.</li>
+                  <li>Efficiency line: constant-capacity multi-modal fusion via shared representation pools with learned gating/masks (inspired by PackNet), plus exploring Sobolev/Laplacian-style preconditioning for faster and more stable optimization.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="offcampus" class="band q3">
+        <h2>Off-campus Research</h2>
+        <div class="grid">
+          <div class="card">
             <ul>
-              <li>Goal: unify Camera/LiDAR/Radar and distorted-camera rendering into a single reproducible “one-click train + one-click eval” framework, and produce simulatable multi-modal rendering outputs.</li>
-              <li>Reviewer-facing design: avoid a “stitched system” by keeping appearance correction separated from physical modalities while using a unified math rule with modality-specific efficient implementations.</li>
-              <li>Efficiency line: constant-capacity multi-modal fusion via shared representation pools with learned gating/masks (inspired by PackNet), plus exploring Sobolev/Laplacian-style preconditioning for faster and more stable optimization.</li>
+              <li>
+                <strong>Institute for AI Industry Research, Tsinghua University (AIR)</strong><br>
+                <span class="meta">2025-12-20 to 2026-03-15</span><br>
+                Conducted external research on autonomous-driving simulation and multi-modal reconstruction, focusing on LiDAR module development, final Radar integration, and GUT multi-modal pipeline integration, with reproducible experiments and metric analysis.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="service" class="band q2">
+        <h2>Academic Service</h2>
+        <div class="grid">
+          <div class="card">
+            <ul>
+              <li>Served as a reviewer for the ICLR 2026 Trustworthy AI Workshop.</li>
             </ul>
           </div>
         </div>
@@ -116,28 +197,13 @@
           <div class="card">
             <ul>
               <li>
-                <strong>The Great Daxinzhuang Pottery Puzzle Challenge (Kaggle)</strong> (2025 - present) — team lead: sherd-edge matching/assembly and vessel-shape reconstruction methods.
-                <details>
-                  <summary class="meta">Challenge overview &amp; evaluation (expand)</summary>
-                  <p class="meta">
-                    How can AI help uncover the secrets of lost civilizations? This challenge combines archaeology and modern ML to automatically assemble pottery sherds and reconstruct original vessel shapes.
-                  </p>
-                  <p class="meta">
-                    Data: ~20,000 pottery sherds excavated from the H690 deposit at the Daxinzhuang site (Jinan, China), an important settlement in the Shang dynasty.
-                  </p>
-                  <p class="meta">
-                    Tasks: (1) sherd connection prediction (edge matching &amp; assembly), (2) 3D vessel-shape reconstruction.
-                  </p>
-                  <p class="meta">
-                    Metrics: Matching Accuracy (70%), Object Completeness (15%), Solution Report Quality &amp; Innovation (15%).
-                  </p>
-                </details>
-              </li>
-              <li>
                 <strong>National Undergraduate Mathematical Contest in Modeling (China)</strong> (2025) — Shanghai Division Third Prize.
               </li>
               <li>
                 <strong>Mathematical Contest in Modeling / Interdisciplinary Contest in Modeling (MCM/ICM)</strong> (2026) — result pending; expected at least Meritorious (M).
+              </li>
+              <li>
+                <strong>The Great Daxinzhuang Pottery Puzzle Challenge (Kaggle)</strong>
               </li>
             </ul>
           </div>
@@ -161,7 +227,6 @@
         <div class="grid">
           <div class="card">
             <p><a href="files/resume.pdf">Resume (PDF)</a></p>
-            <p class="meta">Replace <code>files/resume.pdf</code> with your latest version when publishing.</p>
           </div>
         </div>
       </section>
@@ -178,9 +243,10 @@
 
     <footer class="container">
       <p>
-        Last updated: <time datetime="2026-02-28">2026-02-28</time>.
+        Last updated: <time datetime="2026-03-12">2026-03-12</time>.
         Built with plain HTML/CSS for easy GitHub Pages deployment.
       </p>
     </footer>
   </body>
 </html>
+

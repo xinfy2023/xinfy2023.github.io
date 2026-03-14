@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>辛飞阳 | 个人主页</title>
-    <meta name="description" content="辛飞阳（Feiyang Xin）— 上海科技大学本科生。研究方向：GPU 加速、几何估计、神经渲染、可信 AI。">
+    <meta name="description" content="辛飞阳（Feiyang Xin）— 上海科技大学本科生。研究方向：神经渲染与 3D Gaussian Splatting（3DGS），并探索基于 evidential learning 与 density calibration 的概率机器学习方法。">
     <link rel="stylesheet" href="assets/style.css">
   </head>
   <body>
@@ -14,6 +14,8 @@
         <nav class="nav" aria-label="主导航">
           <a href="#publications">论文</a>
           <a href="#research">科研</a>
+          <a href="#offcampus">校外科研</a>
+          <a href="#service">学术服务</a>
           <a href="#competitions">竞赛</a>
           <a href="#projects">项目</a>
           <a href="#cv">简历</a>
@@ -29,7 +31,7 @@
         <div>
           <h1>辛飞阳 <span class="meta">(Feiyang Xin)</span></h1>
           <p class="subtitle">
-            上海科技大学计算机科学与技术本科生（2023 - 至今）。关注 GPU 加速、鲁棒几何估计、神经渲染与可信 AI。
+            上海科技大学计算机科学与技术本科生（2023 - 至今）。主要研究神经渲染与 3D Gaussian Splatting（3DGS），聚焦 CUDA 加速下的畸变鲁棒重建与可复现实验；并探索概率机器学习方法。
           </p>
           <p class="quicklinks">
             <a href="mailto:xinfy2023@shanghaitech.edu.cn">邮箱</a> ·
@@ -41,6 +43,8 @@
             <span class="tag">Python</span>
             <span class="tag">Linux</span>
             <span class="tag">Computer Vision</span>
+            <span class="tag">3DGS</span>
+            <span class="tag">具身智能</span>
           </div>
         </div>
       </div>
@@ -49,19 +53,42 @@
         <h2>论文（最相关）</h2>
         <div class="grid">
           <div class="card">
-            <ul>
-              <li>
-                <strong>TurboRANSAC: A Fully GPU-Accelerated RANSAC Framework for Robust Estimation</strong><br>
-                IEEE ISCAS 2026（共同一作，已接收） ·
-                <span class="meta">[<a href="files/TurboRANSAC_ISCAS2026.pdf">PDF</a>]</span>
-              </li>
-              <li>
-                <strong>E-NGBOOST: Evidential Natural Gradient Boosting for Tabular Uncertainty Quantification</strong><br>
-                ICLR 2026 Trustworthy AI Workshop（Under review） ·
-                <span class="meta">[<a href="files/E-NGBOOST_ICLR2026_TAI_Workshop.pdf">PDF</a>]</span>
-              </li>
-            </ul>
-            <p class="meta">注：under review / in preparation 不代表最终录用结果；若处于 double-blind 阶段，公开匿名稿可能不符合投稿政策。</p>
+            <details class="fold">
+              <summary>
+                <p class="fold-title">TurboRANSAC: A Fully GPU-Accelerated RANSAC Framework for Robust Estimation</p>
+                <p class="fold-meta">
+                  IEEE ISCAS 2026（共同一作，已接收）
+                  [<a href="files/TurboRANSAC_ISCAS2026.pdf">PDF</a>]
+                </p>
+              </summary>
+              <div class="fold-body">
+                <p class="meta">
+                  鲁棒模型估计是几何视觉中的核心问题，广泛用于相机定位、运动估计与三维重建。传统 RANSAC 多依赖 CPU 串行流程，在 GPU 主导的学习系统中容易成为性能瓶颈。
+                </p>
+                <p class="meta">
+                  TurboRANSAC 将采样、假设生成、打分与精修全流程并行到 GPU，提供统一且可扩展的几何估计方案，而非仅优化单一子模块。
+                </p>
+              </div>
+            </details>
+          </div>
+
+          <div class="card">
+            <details class="fold">
+              <summary>
+                <p class="fold-title">ProbML 2026 Workshop Track（Seoul, South Korea，2026-07-05）</p>
+                <p class="fold-meta">状态：under review</p>
+              </summary>
+              <div class="fold-body">
+                <ul>
+                  <li>项目：Locked Evidence for Shift-Risk Gains on NOAA Climate Regression。</li>
+                  <li>面向气候回归任务，构建 NOAA 真实时空偏移评测基准，并验证 E-NGBoost + 密度校准不确定性（E+IF）在 OOD 风险排序上的稳定增益。</li>
+                  <li>数据与任务：8 个美国站点（2010-2024 日尺度），3 个 next-day 任务（温度/风速/降水），每任务样本量超过 25k。</li>
+                  <li>方法：在不改训练目标的前提下，使用 train-only density 对 evidential epistemic 分数进行推理侧校准，实现 shift-risk 排序增强。</li>
+                  <li>评估协议：预锁定 6 个主假设，使用单侧配对 Wilcoxon、Bootstrap CI 与 Holm 校正，避免 post-hoc 偏差。</li>
+                  <li>结果：6/6 主假设在 Holm 后显著（最大校正后 p=0.006836），在 temporal/geographic AUROC 及 extreme-event AURC、Risk@80、FPR@95 上优于强基线。</li>
+                </ul>
+              </div>
+            </details>
           </div>
         </div>
       </section>
@@ -70,39 +97,95 @@
         <h2>科研经历（进行中）</h2>
         <div class="grid">
           <div class="card">
-            <p>
-              <strong>主动视角采集 + 3D Gaussian Splatting 的语义目标重建（Habitat/Replica）</strong>
-              <span class="meta">· Manuscript in preparation（计划投稿 IEEE RA-L）</span>
-            </p>
-            <ul>
-              <li>构建“主动导航采集 + 3DGS 重建”的端到端系统，面向语义目标（如 chair/bed/toilet）提升目标区域重建质量。</li>
-              <li>提出导航-重建解耦的 Two-Pass 流程：策略在原生观测下生成轨迹；随后在真鱼眼相机与 BVH/Warp Ray-Tracing 深度监督下重放导出 RGB/Depth/Pose/Hit-mask，保证像素级对齐与几何一致性。</li>
-              <li>建立覆盖率感知评估协议（Coverage@1m、PSNR_all/PSNR_covered、Target coverage 等），降低评测偏置与不可复现风险。</li>
-              <li>内部实验（固定 seeds、全量 test/target views）显示在目标覆盖率接近 baseline 的情况下，目标区域重建质量显著提升（Target PSNR_covered@1m 约 +9 dB）。</li>
-            </ul>
+            <details class="fold">
+              <summary>
+                <p class="fold-title">可微 one-pass 混合渲染：3DGS + 纹理 Mesh 统一框架（CUDA）</p>
+                <p class="fold-meta">Manuscript in preparation（计划投稿 ACM TOG）</p>
+              </summary>
+              <div class="fold-body">
+                <ul>
+                  <li>研发 3D Gaussian Splatting 与纹理 Mesh 的统一 one-pass 可微混合渲染框架（CUDA）。</li>
+                  <li>将三角形作为原生 primitive，与高斯在同一 tile 队列中进行 key 排序与融合渲染，支持端到端反向传播（含纹理参数梯度）。</li>
+                  <li>围绕画质（PSNR）与性能（FPS）进行系统性评测与优化。</li>
+                </ul>
+              </div>
+            </details>
           </div>
 
           <div class="card">
-            <p>
-              <strong>可微 one-pass 混合渲染：3DGS + 纹理 Mesh 统一框架（CUDA）</strong>
-              <span class="meta">· Manuscript in preparation（计划投稿 ACM TOG）</span>
-            </p>
-            <ul>
-              <li>研发 3D Gaussian Splatting 与纹理 Mesh 的统一 one-pass 可微混合渲染框架（CUDA）。</li>
-              <li>将三角形作为原生 primitive，与高斯在同一 tile 队列中进行 key 排序与融合渲染，支持端到端反向传播（含纹理参数梯度）。</li>
-              <li>围绕画质（PSNR）与性能（FPS）进行系统性评测与优化。</li>
-            </ul>
+            <details class="fold">
+              <summary>
+                <p class="fold-title">自动驾驶多模态可复现训练 / 评测框架（Bilateral Driving 主干）</p>
+                <p class="fold-meta">Ongoing（计划投稿 NeurIPS 2026）</p>
+              </summary>
+              <div class="fold-body">
+                <ul>
+                  <li>项目地点：清华大学智能产业研究院（Institute for AI Industry Research, Tsinghua University，AIR）。</li>
+                  <li>目标：将 Camera / LiDAR / Radar 与畸变相机渲染等能力统一到“一键训练 + 一键评测”的可复现工程框架中，并输出可用于仿真的多模态渲染结果。</li>
+                  <li>审稿关键矛盾：外观分支不污染物理模态；渲染层面使用统一数学法则 + 模态定制高效实现，避免“缝合怪”。</li>
+                  <li>效率主线：借鉴 PackNet 思想做恒定容量的多模态融合（共享表示池上学习 gating/mask），并探索 Sobolev/Laplacian 等预条件以加速、稳定优化收敛。</li>
+                </ul>
+              </div>
+            </details>
           </div>
 
           <div class="card">
-            <p>
-              <strong>自动驾驶多模态可复现训练 / 评测框架（以 Bilateral Driving 为唯一主干）</strong>
-              <span class="meta">· Ongoing</span>
-            </p>
+            <details class="fold">
+              <summary>
+                <p class="fold-title">主动视角采集 + 3D Gaussian Splatting 的语义目标重建（Habitat/Replica）</p>
+                <p class="fold-meta">Manuscript in preparation（计划投稿 IEEE RA-L）</p>
+              </summary>
+              <div class="fold-body">
+                <ul>
+                  <li>构建“主动导航采集 + 3DGS 重建”的端到端系统，面向语义目标（如 chair/bed/toilet）提升目标区域重建质量。</li>
+                  <li>提出导航-重建解耦的 Two-Pass 流程：策略在原生观测下生成轨迹；随后在真鱼眼相机与 BVH/Warp Ray-Tracing 深度监督下重放导出 RGB/Depth/Pose/Hit-mask，保证像素级对齐与几何一致性。</li>
+                  <li>建立覆盖率感知评估协议（Coverage@1m、PSNR_all/PSNR_covered、Target coverage 等），降低评测偏置与不可复现风险。</li>
+                  <li>内部实验（固定 seeds、全量 test/target views）显示在目标覆盖率接近 baseline 的情况下，目标区域重建质量显著提升（Target PSNR_covered@1m 约 +9 dB）。</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+
+          <div class="card">
+            <details class="fold">
+              <summary>
+                <p class="fold-title">2DGUT：Distortion-Robust Surface World Representation（3DGUT 项目）</p>
+                <p class="fold-meta">Ongoing</p>
+              </summary>
+              <div class="fold-body">
+                <ul>
+                  <li>面向 fisheye / 强畸变相机，提出并实现 2DGUT：将 Unscented Transform（UT）投影与 ray-plane surfel primitive 集成到 Gaussian Splatting 重建管线，提升非线性投影下几何与训练稳定性。</li>
+                  <li>设计并落地分阶段训练流程（transfer → surface refine → metric recover）及评测协议（PSNR/SSIM/LPIPS + 几何指标）。</li>
+                  <li>在 Lego fisheye（180°）上将 PSNR 从 22.48 提升到 31.65；在 matched evaluator 下相对 canonical 2DGS（no-UT）达到 31.83 vs 28.14（+3.69 dB）。</li>
+                  <li>在 ScanNet++ DSLR 多场景实验中取得稳定增益（主场景最高约 +1.36 dB，新增 3 场景均为正增益），并完成可复现实验日志与可视化/消融分析。</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="offcampus" class="band q3">
+        <h2>校外科研</h2>
+        <div class="grid">
+          <div class="card">
             <ul>
-              <li>目标：将 Camera / LiDAR / Radar 与畸变相机渲染等能力统一到“一键训练 + 一键评测”的可复现工程框架中，并输出可用于仿真的多模态渲染结果。</li>
-              <li>审稿关键矛盾：外观分支不污染物理模态；渲染层面使用统一数学法则 + 模态定制高效实现，避免“缝合怪”。</li>
-              <li>效率主线：借鉴 PackNet 思想做恒定容量的多模态融合（共享表示池上学习 gating/mask），并探索 Sobolev/Laplacian 等预条件以加速、稳定优化收敛。</li>
+              <li>
+                <strong>清华大学智能产业研究院（AIR）校外科研</strong><br>
+                <span class="meta">2025-12-20 至 2026-03-15</span><br>
+                参与自动驾驶仿真与多模态重建系统研发，主要负责 LiDAR 模块开发、Radar 最终整合与 GUT 多模态联调，并完成可复现实验与指标分析。
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="service" class="band q2">
+        <h2>学术服务</h2>
+        <div class="grid">
+          <div class="card">
+            <ul>
+              <li>担任 ICLR 2026 Trustworthy AI Workshop 审稿人（Reviewer）。</li>
             </ul>
           </div>
         </div>
@@ -114,31 +197,13 @@
           <div class="card">
             <ul>
               <li>
-                <strong>大辛庄陶片拼合 AI 挑战赛（Kaggle）</strong>（2025 - 至今）— 队长：面向真实出土陶片数据的断茬匹配拼合与器形复原算法（参赛项目）。
-                <details>
-                  <summary class="meta">竞赛简介与评价指标（展开）</summary>
-                  <p class="meta">
-                    人工智能如何揭开失落文明的秘密？本挑战赛融合商代考古与机器学习，目标是将成千上万片陶器碎片自动拼合，并尽可能复原原始器物形态。
-                  </p>
-                  <p class="meta">
-                    数据来源：济南大辛庄遗址（商朝东方重要聚落）H690 堆积，出土近 20,000 片陶器碎片等遗存。
-                  </p>
-                  <p class="meta">
-                    核心任务：断茬匹配拼合（预测陶片连接关系）与器形三维重建（复原器物形状）。
-                  </p>
-                  <p class="meta">
-                    评测指标：拼接准确度（70%）、器形完整度（15%）、解决方案报告质量与创新性（15%）。
-                  </p>
-                  <p class="meta">
-                    主办：北师香港浸会大学高等研究院、山东大学考古学院（文化遗产研究院）。更多细节可参考竞赛官方 Description 文档。
-                  </p>
-                </details>
-              </li>
-              <li>
                 <strong>全国大学生数学建模竞赛</strong>（2025）— 上海赛区省三等奖（队长）。
               </li>
               <li>
                 <strong>美国大学生数学建模竞赛（MCM/ICM）</strong>（2026）— 预计至少 M 奖（结果待公布）。
+              </li>
+              <li>
+                <strong>大辛庄陶片拼合 AI 挑战赛（Kaggle）</strong>
               </li>
             </ul>
           </div>
@@ -162,7 +227,6 @@
         <div class="grid">
           <div class="card">
             <p><a href="files/resume.pdf">简历（PDF）</a></p>
-            <p class="meta">发布到线上时，记得用最新的 PDF 覆盖 <code>files/resume.pdf</code>。</p>
           </div>
         </div>
       </section>
@@ -179,9 +243,10 @@
 
     <footer class="container">
       <p>
-        最近更新：<time datetime="2026-02-28">2026-02-28</time>。
+        最近更新：<time datetime="2026-03-12">2026-03-12</time>。
         纯 HTML/CSS，方便直接部署到 GitHub Pages。
       </p>
     </footer>
   </body>
 </html>
+

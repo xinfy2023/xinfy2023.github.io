@@ -234,6 +234,59 @@ summary{
 }
 details > :not(summary){margin-top:0.35rem;}
 
+/* Collapsible cards for publications/research. */
+details.fold{
+  margin-top:0;
+}
+details.fold summary{
+  list-style:none;
+  position:relative;
+  padding-left:1.65rem;
+  min-height:1.5rem;
+}
+details.fold summary::-webkit-details-marker{
+  display:none;
+}
+details.fold summary::before{
+  content:"▸";
+  position:absolute;
+  left:0.1rem;
+  top:0.05rem;
+  line-height:1.1;
+  color:var(--muted);
+  font-size:1.2rem;
+  font-weight:700;
+  transition:transform 140ms ease;
+}
+details.fold summary::after{
+  content:"Click to expand / 点击展开";
+  display:block;
+  margin-top:0.24rem;
+  line-height:1.2;
+  color:var(--muted);
+  font-size:0.74rem;
+  letter-spacing:0.01em;
+  text-transform:none;
+}
+details.fold[open] summary::before{
+  transform:rotate(90deg);
+}
+details.fold[open] summary::after{
+  content:"Collapse / 点击收起";
+}
+details.fold .fold-title{
+  margin:0;
+  font-weight:700;
+}
+details.fold .fold-meta{
+  margin-top:0.16rem;
+  color:var(--muted);
+  font-size:0.95rem;
+}
+details.fold .fold-body{
+  margin-top:0.55rem;
+}
+
 @media (max-width:700px){
   .hero{flex-direction:column;align-items:flex-start;}
   .avatar{width:136px;height:136px;}
