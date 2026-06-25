@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Feiyang Xin | Homepage</title>
-    <meta name="description" content="Feiyang Xin (辛飞阳) — Undergraduate student at ShanghaiTech University. Research focus: neural rendering and 3D Gaussian Splatting (3DGS), with additional work on probabilistic machine learning via evidential learning and density calibration.">
+    <meta name="description" content="Feiyang Xin — Undergraduate student at ShanghaiTech University. Research focus: neural rendering and 3D Gaussian Splatting (3DGS), with additional work on probabilistic machine learning via evidential learning and density calibration.">
+    <link rel="canonical" href="https://xinfy2023.github.io/">
     <link rel="stylesheet" href="assets/style.css">
   </head>
   <body>
@@ -20,7 +21,7 @@
           <a href="#projects">Projects</a>
           <a href="#cv">CV</a>
           <a href="#contact">Contact</a>
-          <a class="lang" href="index_zh.html" title="中文">中文</a>
+          <a class="lang" href="index_zh.html" title="中文" rel="nofollow">中文</a>
         </nav>
       </div>
     </header>
@@ -29,7 +30,7 @@
       <div class="hero">
         <img class="avatar" src="1.jpg" alt="Photo">
         <div>
-          <h1>Feiyang Xin <span class="meta">(辛飞阳)</span></h1>
+          <h1>Feiyang Xin</h1>
           <p class="subtitle">
             Undergraduate student at ShanghaiTech University (2023 - present). Primarily focused on neural rendering and 3D Gaussian Splatting (3DGS), with emphasis on distortion-robust reconstruction and reproducible experiments; additionally exploring probabilistic machine learning via evidential learning and density calibration.
           </p>
@@ -68,25 +69,6 @@
                 <p class="meta">
                   TurboRANSAC is a fully GPU-accelerated framework that parallelizes all key stages, including sampling, hypothesis generation, scoring, and refinement, directly on GPU. Unlike methods that optimize isolated components, TurboRANSAC provides a unified and scalable solution applicable to a broad spectrum of geometric estimation problems.
                 </p>
-              </div>
-            </details>
-          </div>
-
-          <div class="card">
-            <details class="fold">
-              <summary>
-                <p class="fold-title">ProbML 2026 Workshop Track (Seoul, South Korea, Jul 05, 2026)</p>
-                <p class="fold-meta">Status: under review</p>
-              </summary>
-              <div class="fold-body">
-                <ul>
-                  <li>Project: Locked Evidence for Shift-Risk Gains on NOAA Climate Regression.</li>
-                  <li>Builds a real spatiotemporal-shift benchmark for NOAA climate regression and validates stable OOD risk-ranking gains from E-NGBoost with density-calibrated uncertainty (E+IF).</li>
-                  <li>Dataset and tasks: 8 US stations, daily data from 2010 to 2024, and 3 next-day tasks (temperature, wind speed, precipitation), each with over 25k samples.</li>
-                  <li>Method: inference-side calibration of evidential epistemic scores using train-only density, without changing the training objective.</li>
-                  <li>Evaluation protocol: 6 pre-locked primary hypotheses, one-sided paired Wilcoxon, bootstrap CIs, and Holm correction to avoid post-hoc bias.</li>
-                  <li>Results: 6/6 primary hypotheses remain significant after Holm (max adjusted p=0.006836), with gains over strong baselines on temporal/geographic AUROC and extreme-event AURC, Risk@80, and FPR@95.</li>
-                </ul>
               </div>
             </details>
           </div>
@@ -150,7 +132,7 @@
             <details class="fold">
               <summary>
                 <p class="fold-title">Reproducible multi-modal training/evaluation framework for autonomous driving (Bilateral Driving backbone)</p>
-                <p class="fold-meta">Ongoing (planned submission to NeurIPS 2026)</p>
+                <p class="fold-meta">Ongoing</p>
               </summary>
               <div class="fold-body">
                 <ul>
@@ -200,11 +182,9 @@
                 <strong>National Undergraduate Mathematical Contest in Modeling (China)</strong> (2025) — Shanghai Division Third Prize.
               </li>
               <li>
-                <strong>Mathematical Contest in Modeling / Interdisciplinary Contest in Modeling (MCM/ICM)</strong> (2026) — result pending; expected at least Meritorious (M).
+                <strong>Mathematical Contest in Modeling / Interdisciplinary Contest in Modeling (MCM/ICM)</strong> (2026) — Meritorious Winner.
               </li>
-              <li>
-                <strong>The Great Daxinzhuang Pottery Puzzle Challenge (Kaggle)</strong>
-              </li>
+              <li><strong>The Great Daxinzhuang Pottery Puzzle Challenge (Kaggle)</strong></li>
             </ul>
           </div>
         </div>
@@ -242,10 +222,7 @@
     </main>
 
     <footer class="container">
-      <p>
-        Last updated: <time datetime="2026-03-12">2026-03-12</time>.
-        Built with plain HTML/CSS for easy GitHub Pages deployment.
-      </p>
+      <p>&copy; Feiyang Xin</p>
     </footer>
   </body>
 </html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /index_zh.html
+Disallow: /files/resume.pdf

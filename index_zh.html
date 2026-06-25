@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>辛飞阳 | 个人主页</title>
     <meta name="description" content="辛飞阳（Feiyang Xin）— 上海科技大学本科生。研究方向：神经渲染与 3D Gaussian Splatting（3DGS），并探索基于 evidential learning 与 density calibration 的概率机器学习方法。">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <link rel="canonical" href="https://xinfy2023.github.io/">
     <link rel="stylesheet" href="assets/style.css">
   </head>
   <body>
@@ -71,25 +74,6 @@
               </div>
             </details>
           </div>
-
-          <div class="card">
-            <details class="fold">
-              <summary>
-                <p class="fold-title">ProbML 2026 Workshop Track（Seoul, South Korea，2026-07-05）</p>
-                <p class="fold-meta">状态：under review</p>
-              </summary>
-              <div class="fold-body">
-                <ul>
-                  <li>项目：Locked Evidence for Shift-Risk Gains on NOAA Climate Regression。</li>
-                  <li>面向气候回归任务，构建 NOAA 真实时空偏移评测基准，并验证 E-NGBoost + 密度校准不确定性（E+IF）在 OOD 风险排序上的稳定增益。</li>
-                  <li>数据与任务：8 个美国站点（2010-2024 日尺度），3 个 next-day 任务（温度/风速/降水），每任务样本量超过 25k。</li>
-                  <li>方法：在不改训练目标的前提下，使用 train-only density 对 evidential epistemic 分数进行推理侧校准，实现 shift-risk 排序增强。</li>
-                  <li>评估协议：预锁定 6 个主假设，使用单侧配对 Wilcoxon、Bootstrap CI 与 Holm 校正，避免 post-hoc 偏差。</li>
-                  <li>结果：6/6 主假设在 Holm 后显著（最大校正后 p=0.006836），在 temporal/geographic AUROC 及 extreme-event AURC、Risk@80、FPR@95 上优于强基线。</li>
-                </ul>
-              </div>
-            </details>
-          </div>
         </div>
       </section>
 
@@ -116,7 +100,7 @@
             <details class="fold">
               <summary>
                 <p class="fold-title">自动驾驶多模态可复现训练 / 评测框架（Bilateral Driving 主干）</p>
-                <p class="fold-meta">Ongoing（计划投稿 NeurIPS 2026）</p>
+                <p class="fold-meta">进行中</p>
               </summary>
               <div class="fold-body">
                 <ul>
@@ -200,11 +184,9 @@
                 <strong>全国大学生数学建模竞赛</strong>（2025）— 上海赛区省三等奖（队长）。
               </li>
               <li>
-                <strong>美国大学生数学建模竞赛（MCM/ICM）</strong>（2026）— 预计至少 M 奖（结果待公布）。
+                <strong>美国大学生数学建模竞赛（MCM/ICM）</strong>（2026）— M 奖（Meritorious Winner）。
               </li>
-              <li>
-                <strong>大辛庄陶片拼合 AI 挑战赛（Kaggle）</strong>
-              </li>
+              <li><strong>大辛庄陶片拼合 AI 挑战赛（Kaggle）</strong></li>
             </ul>
           </div>
         </div>
@@ -242,10 +224,7 @@
     </main>
 
     <footer class="container">
-      <p>
-        最近更新：<time datetime="2026-03-12">2026-03-12</time>。
-        纯 HTML/CSS，方便直接部署到 GitHub Pages。
-      </p>
+      <p>&copy; 辛飞阳</p>
     </footer>
   </body>
 </html>
